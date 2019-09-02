@@ -61,3 +61,6 @@ typings/
 .next
 generated
 build
+
+# prisma
+prisma.yml
