@@ -12,7 +12,7 @@ Instragram clone with Express + Prisma + React and React Native
 - [x] Search by user  
 - [x] Search by location  
 - [x] Follow User  
-- [] Unfollow User  
+- [x] Unfollow User  
 - [] Edit my profile  
 - [] See user profile  
 - [] See MY profile  
