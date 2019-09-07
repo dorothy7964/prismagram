@@ -21,13 +21,16 @@ type User {
 }
  
 type Post {
-  id: ID! 
+  id: ID!
   location: String
-  caption: String! 
+  caption: String!
   user: User!
   files: [File!]!
   likes: [Like!]!
   comments: [Comment!]!
+  isLiked: Boolean!
+  likeCount: Int!
+  commentCount: Int!
 }
 
 type Like {
