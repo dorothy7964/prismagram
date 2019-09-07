@@ -1,17 +1,23 @@
 type User {
   id: ID!
-  userName: String! 
-  email: String! 
-  firstName: String 
+  userName: String!
+  email: String!
+  firstName: String
   lastName: String
+  fullName: String
+  isFollowing: Boolean!
+  isSelf: Boolean!
   bio: String
-  following: [User!]! 
-  followers: [User!]! 
+  following: [User!]!
+  followingCount: Int!
+  followers: [User!]!
+  followersCount: Int!
   posts: [Post!]!
+  postsCount: Int!
   likes: [Like!]!
   comments: [Comment!]!
   rooms: [Room!]!
-  loginSecret: String 
+  loginSecret: String!
 }
  
 type Post {
