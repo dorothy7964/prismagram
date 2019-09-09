@@ -5,6 +5,7 @@ type User {
   firstName: String @default(value: "") 
   lastName: String
   bio: String
+  avatar: String
   following: [User!]! @relation(name: "FollowRelation")
   followers: [User!]! @relation(name: "FollowRelation")
   posts: [Post!]! @relation(name: "PostsOfUser", onDelete: CASCADE)
@@ -56,12 +57,12 @@ type File {
 type Room {
   id: ID! @id
   participants: [User!]!
-  messages: [Messages!]!
+  messages: [Message!]!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
 
-type Messages {
+type Message {
   id: ID! @id
   text: String!
   from: User! @relation(name: "From")

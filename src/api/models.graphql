@@ -8,6 +8,7 @@ type User {
   isFollowing: Boolean!
   isSelf: Boolean!
   bio: String
+  avatar: String
   following: [User!]!
   followingCount: Int!
   followers: [User!]!
@@ -55,10 +56,10 @@ type File {
 type Room {
   id: ID!
   participants: [User!]!
-  messages: [Messages!]!
+  messages: [Message!]!
 }
 
-type Messages {
+type Message {
   id: ID!
   text: String!
   from: User!
