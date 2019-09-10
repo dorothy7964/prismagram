@@ -32,7 +32,7 @@ export default {
                 },
                 to: {
                     connect: {
-                        id: roomId ? getTo.id : toId
+                        id: roomId? getTo.id : toId
                     }
                 },
                 room: {
