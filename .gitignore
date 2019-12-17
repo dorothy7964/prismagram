@@ -62,8 +62,5 @@ typings/
 generated
 build
 
-# prisma
-prisma.yml
-
 # words
 src/words.js
