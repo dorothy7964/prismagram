@@ -38,6 +38,7 @@
     "dev": "nodemon --exec babel-node src/server.js",
     "prebuild": "yarn run generate",
     "build": "babel src -d build",
-    "postbuild": "npx copy src/api/**/**.graphql ./build/api"
+    "postbuild": "npx copy src/api/**/**.graphql ./build/api",
+    "start": "node build/server.js"
   }
 }
