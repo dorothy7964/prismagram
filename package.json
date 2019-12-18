@@ -16,6 +16,7 @@
     "dotenv": "^8.1.0",
     "graphql-tools": "^4.0.5",
     "graphql-yoga": "^1.18.3",
+    "heroku": "7.35.0",
     "jsonwebtoken": "^8.5.1",
     "merge-graphql-schemas": "^1.7.0",
     "morgan": "^1.9.1",
