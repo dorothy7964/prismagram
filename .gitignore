@@ -62,5 +62,3 @@ typings/
 generated
 build
 
-# words
-src/words.js
