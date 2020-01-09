@@ -2,26 +2,26 @@ import { prisma } from "../../../../generated/prisma-client";
 
 export default {
     Query: {
-        randomUser: async (_, __, { request, isAuthenticated }) => {
+        randomPost: async (_, __, { request, isAuthenticated }) => {
             isAuthenticated(request);
             const { user } = request;
-            const users = await prisma.users({
+            const posts = await prisma.posts({
                 where: {
-                    id_not_in: [user.id]
+                    user: {id_not_in: [user.id] }
                 },
                 orderBy: "createdAt_DESC"
             });
-            const allUserCount = users.length;
+            const allPostCount = posts.length;
            
-            if(allUserCount < 1){
+            if(allPostCount < 1){
                 throw Error("There are no users. - randomUser");
             }else {
-                for (let i = allUserCount - 1; i > 0; i--) {
+                for (let i = allPostCount - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
-                    [users[i], users[j]] = [users[j], users[i]];
+                    [posts[i], posts[j]] = [posts[j], posts[i]];
                 }
             }
-            return users;
+            return posts;
         }
     }
 };
