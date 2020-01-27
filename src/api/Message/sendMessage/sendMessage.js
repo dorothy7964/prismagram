@@ -8,19 +8,31 @@ export default {
             const { roomId, message, toId } = args;
             let room;
             if (roomId === undefined) {
-                if (user.id !== toId) {
+                const partiUsers = await prisma.rooms({
+                    where: {
+                        participants_some: {
+                            id: toId
+                        }
+                    }
+                });
+                if( (!partiUsers.length && user.id !== toId) || partiUsers === undefined ) {
                     room = await prisma.createRoom({
                         participants: {
                             connect: [{ id: toId }, { id: user.id }]
                         }
                     });
+                } else {
+                    const partiUsersId = partiUsers[0].id;
+                    room = await prisma.room({ id: partiUsersId });    
                 }
             } else {
                 room = await prisma.room({ id: roomId });
             }
+
             if (!room) {
                 throw Error("Room not found");
             }
+
             const participants = await prisma.room({ id: room.id }).participants();
             const getTo = participants.filter(
                 participant => participant.id !== user.id
