@@ -10,7 +10,8 @@ export default {
                     participants_some: {
                         id: user.id
                     }
-                }
+                },
+                orderBy: "updatedAt_DESC"
             });
         }
     }
