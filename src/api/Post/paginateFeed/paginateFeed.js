@@ -3,7 +3,6 @@ import { prisma } from "../../../../generated/prisma-client";
 export default {
     Query: {
         paginateFeed: async (_, args, { request, isAuthenticated }) => {
-            console.log(args.pageNumber);
             isAuthenticated(request);
             const { user } = request;
             const following = await prisma.user({ id: user.id }).following();

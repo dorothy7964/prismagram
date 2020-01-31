@@ -67,6 +67,9 @@ type Room {
   id: ID!
   participants: [User!]!
   messages: [Message!]!
+  unReadMsgCounter: Int!
+  lastMessage: String
+  lastMsgTime: String
   createdAt: String
   updatedAt: String
 }
@@ -77,6 +80,7 @@ type Message {
   from: User!
   to: User! 
   room: Room!
+  readMessage: Boolean!
   createdAt: String
   updatedAt: String
 }

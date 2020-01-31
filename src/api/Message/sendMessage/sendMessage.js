@@ -8,36 +8,39 @@ export default {
             const { roomId, message, toId } = args;
             let room;
             if (roomId === undefined) {
-                const partiUsers = await prisma.rooms({
+                if (toId === user.id) { throw Error("self User"); }
+                const seeRooms = await prisma.rooms({
                     where: {
-                        participants_some: {
-                            id: toId
-                        }
-                    }
+                        AND: [
+                            { participants_some: { id: toId} },
+                            { participants_some: { id: user.id} },
+                        ]
+                    },
+                    orderBy: "updatedAt_DESC"
                 });
-                if( (!partiUsers.length && user.id !== toId) || partiUsers === undefined ) {
+                const existsRoom = seeRooms[0];
+                if (existsRoom === undefined) {
                     room = await prisma.createRoom({
                         participants: {
                             connect: [{ id: toId }, { id: user.id }]
                         }
                     });
                 } else {
-                    const partiUsersId = partiUsers[0].id;
-                    room = await prisma.room({ id: partiUsersId });    
+                    room = await prisma.room({ id: existsRoom.id });
                 }
             } else {
                 room = await prisma.room({ id: roomId });
             }
 
-            if (!room) {
-                throw Error("Room not found");
-            }
+            if (!room) { throw Error("Room not found"); }
 
             const participants = await prisma.room({ id: room.id }).participants();
             const getTo = participants.filter(
                 participant => participant.id !== user.id
-            )[0];
-            return prisma.createMessage({
+            )[0];        
+
+
+            const result = await prisma.createMessage({
                 text: message,
                 from: {
                     connect: { id: user.id }
@@ -53,6 +56,20 @@ export default {
                     }
                 }
             });
+
+            // lastMsgTime, lastMessage
+            const now = new Date();
+            const update = prisma.updateRoom({
+                where:  {id: room.id },
+                data: { 
+                    lastMsgTime: now.toISOString(),
+                    lastMessage: message
+                }
+            });
+            update.then(res => console.log("res",res));
+           
+
+            return result;
         }
     }
 };
