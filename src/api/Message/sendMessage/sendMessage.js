@@ -67,7 +67,6 @@ export default {
                 }
             });
             update.then(res => console.log("res",res));
-           
 
             return result;
         }
