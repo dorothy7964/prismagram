@@ -40,10 +40,10 @@
     "nodemon": "^1.19.1"
   },
   "scripts": {
+    "dev": "nodemon --exec babel-node src/server.js",
     "deploy": "prisma deploy",
     "generate": "prisma generate",
     "prisma": "yarn run deploy && yarn run generate",
-    "dev": "nodemon --exec babel-node src/server.js",
     "prebuild": "yarn run generate",
     "build": "babel src -d build",
     "postbuild": "npx copy src/api/**/**.graphql ./build/api/",
