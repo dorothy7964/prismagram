@@ -19,7 +19,6 @@ export default {
                     .node();
             },
             resolve: (payload, args, context) => {
-                console.log(args, context);
                 return payload;
             }
         }

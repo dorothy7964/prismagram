@@ -15,8 +15,7 @@ export default {
                             { participants_some: { id: toId} },
                             { participants_some: { id: user.id} },
                         ]
-                    },
-                    orderBy: "updatedAt_DESC"
+                    }
                 });
                 const existsRoom = seeRooms[0];
                 if (existsRoom === undefined) {

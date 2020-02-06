@@ -22,7 +22,6 @@ export default{
             };
 
             try {
-                console.log("readMessage");
                 const result = await prisma.updateManyMessages({
                     where: filterOptions,
                     data: { readMessage: true }
