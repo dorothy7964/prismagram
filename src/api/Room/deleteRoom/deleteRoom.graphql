@@ -1,0 +1,3 @@
+type Mutation {
+    deleteRoom(roomId: String!): Room
+}
