@@ -36,6 +36,7 @@ type Like {
   id: ID! @id
   user: User @relation(name: "LikesOfUser")
   post: Post @relation(name: "LikeOfPost")
+  readCheck: Boolean! @default(value: false)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
