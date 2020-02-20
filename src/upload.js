@@ -12,7 +12,7 @@ const upload = multer({
     storage: multerS3({
         s3,
         acl: 'public-read',
-        bucket: "prismagram-back", 
+        bucket: "prismagram.tk", 
         metadata: function (req, file, cb) {
             cb(null, {fieldName: file.fieldname});
         },
