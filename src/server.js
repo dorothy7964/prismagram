@@ -17,12 +17,11 @@ const server = new GraphQLServer({
     schema,
     context: ({ request }) => ({ request, isAuthenticated })
 });
-
-server.express.use(cors());
+  
 server.express.use(logger("dev"));
 server.express.use(authenticateJwt);
-server.express.post("/api/upload", uploadMiddleware, uploadController);
-server.express.post("/api/uploads", uploadsMiddleWare, uploadsController);
+server.express.post("/api/upload",  cors(), uploadMiddleware, uploadController);
+server.express.post("/api/uploads", cors(), uploadsMiddleWare, uploadsController);
 
 server.start({ port: PORT }, () =>
     console.log(`Server running on  http://localhost:${PORT}`)

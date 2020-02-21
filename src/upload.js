@@ -25,11 +25,13 @@ export const uploadMiddleware = upload.single("file");
 export const uploadsMiddleWare = upload.array("file",5);
 
 export const uploadController = (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     const { file: { location } } = req;
     res.json({ location });
 };
 
 export const uploadsController = (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     const { files } = req;
     const location = files.map(file => file.location);
     res.json({ location });
