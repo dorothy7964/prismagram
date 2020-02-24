@@ -26,12 +26,16 @@ export const uploadsMiddleWare = upload.array("file",5);
 
 export const uploadController = (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     const { file: { location } } = req;
     res.json({ location });
 };
 
 export const uploadsController = (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     const { files } = req;
     const location = files.map(file => file.location);
     res.json({ location });
