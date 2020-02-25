@@ -11,7 +11,7 @@ const s3 = new aws.S3({
 const upload = multer({ 
     storage: multerS3({
         s3,
-        acl: 'public-read-write',
+        acl: 'public-read',
         bucket: "prismagram.tk", 
         metadata: function (req, file, cb) {
             cb(null, {fieldName: file.fieldname});
@@ -25,17 +25,11 @@ export const uploadMiddleware = upload.single("file");
 export const uploadsMiddleWare = upload.array("file",5);
 
 export const uploadController = (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     const { file: { location } } = req;
     res.json({ location });
 };
 
 export const uploadsController = (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     const { files } = req;
     const location = files.map(file => file.location);
     res.json({ location });
