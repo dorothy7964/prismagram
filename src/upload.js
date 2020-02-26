@@ -21,6 +21,7 @@ const upload = multer({
         }  
     }) 
 });
+
 export const uploadMiddleware = upload.single("file");
 export const uploadsMiddleWare = upload.array("file",5);
 
